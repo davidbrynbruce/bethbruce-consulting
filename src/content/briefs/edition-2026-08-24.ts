@@ -7,6 +7,7 @@ export const edition: BriefEdition = {
   dek: "The week retail media's center of gravity showed itself: Walmart made advertising the star of its earnings, Criteo reorganized for a harder market, the measurement referees made their move, and AI agents officially became ad inventory.",
   stories: [
     {
+      slug: "walmart",
       category: "RMN Momentum",
       headline: "Walmart makes advertising the star of its earnings week",
       body: [
@@ -38,6 +39,7 @@ export const edition: BriefEdition = {
       ],
     },
     {
+      slug: "criteo",
       category: "Ad Tech",
       headline: "Criteo rewires its leadership bench amid client churn",
       body: [
@@ -58,6 +60,7 @@ export const edition: BriefEdition = {
       ],
     },
     {
+      slug: "measurement",
       category: "Measurement & Standards",
       headline: "The measurement referees finally move",
       body: [
@@ -79,6 +82,7 @@ export const edition: BriefEdition = {
       ],
     },
     {
+      slug: "agentic-commerce",
       category: "Agentic Commerce",
       headline: "The agents officially become ad inventory",
       body: [
@@ -104,6 +108,7 @@ export const edition: BriefEdition = {
       ],
     },
     {
+      slug: "amazon",
       category: "Amazon",
       headline: "Amazon quietly ships the plumbing for agentic buying",
       body: [
@@ -125,6 +130,7 @@ export const edition: BriefEdition = {
       ],
     },
     {
+      slug: "ad-tech-profit",
       category: "Money",
       headline: "Ad tech's profitability problem comes due",
       body: [

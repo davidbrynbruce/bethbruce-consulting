@@ -1,15 +1,6 @@
 import { Link } from "react-router-dom";
 import { latestEdition } from "@/content/briefs";
 
-const briefQuestions = [
-  "Which retail media networks are actually gaining momentum?",
-  "What are advertisers demanding?",
-  "Which RMNs have the strongest positioning?",
-  "Where is retail media heading — and what are retailers getting wrong?",
-  "What does it all mean for CPGs?",
-  "Which commerce technologies are worth watching?",
-];
-
 const advisoryOfferings = [
   {
     title: "Strategy projects",
@@ -46,6 +37,7 @@ const credentials = [
 ];
 
 function Home() {
+  const latest = latestEdition;
   return (
     <main>
       <section className="mx-auto max-w-content px-6 pb-20 pt-24 sm:pt-32">
@@ -90,19 +82,19 @@ function Home() {
             and commentary on LinkedIn.
           </p>
 
-          {latestEdition && (
+          {latest && (
             <Link
-              to={`/brief/${latestEdition.slug}`}
+              to={`/brief/${latest.slug}`}
               className="mt-10 block rounded-2xl border border-border bg-card p-8 transition-colors hover:border-accent"
             >
               <p className="text-sm font-semibold uppercase tracking-widest text-accent">
-                Latest edition · {latestEdition.weekOf}
+                Latest edition · {latest.weekOf}
               </p>
               <h3 className="mt-3 font-display text-2xl font-semibold sm:text-3xl">
-                {latestEdition.title}
+                {latest.title}
               </h3>
               <p className="mt-3 max-w-3xl text-muted-foreground">
-                {latestEdition.dek}
+                {latest.dek}
               </p>
               <span className="mt-4 inline-block font-medium text-accent">
                 Read this week's Brief →
@@ -110,16 +102,27 @@ function Home() {
             </Link>
           )}
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {briefQuestions.map((question) => (
-              <div
-                key={question}
-                className="rounded-2xl border border-border bg-card p-6 font-display text-lg"
-              >
-                {question}
-              </div>
-            ))}
-          </div>
+          {latest && (
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {latest.stories.map((story) => (
+                <Link
+                  key={story.slug}
+                  to={`/brief/${latest.slug}#${story.slug}`}
+                  className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-accent"
+                >
+                  <p className="text-xs font-semibold uppercase tracking-widest text-accent">
+                    {story.category}
+                  </p>
+                  <h3 className="mt-2 font-display text-lg font-semibold">
+                    {story.headline}
+                  </h3>
+                  <span className="mt-3 inline-block text-sm font-medium text-accent">
+                    Read →
+                  </span>
+                </Link>
+              ))}
+            </div>
+          )}
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               to="/brief"

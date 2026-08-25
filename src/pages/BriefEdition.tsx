@@ -42,11 +42,24 @@ function BriefEditionPage() {
         {edition.dek}
       </p>
 
+      <nav className="mt-8 flex flex-wrap gap-2">
+        {edition.stories.map((story) => (
+          <a
+            key={story.slug}
+            href={`#${story.slug}`}
+            className="rounded-full border border-border px-4 py-2 text-sm font-medium hover:bg-muted"
+          >
+            {story.category}
+          </a>
+        ))}
+      </nav>
+
       <div className="mt-14 space-y-12">
         {edition.stories.map((story) => (
           <article
-            key={story.headline}
-            className="rounded-2xl border border-border bg-card p-8 sm:p-10"
+            key={story.slug}
+            id={story.slug}
+            className="scroll-mt-24 rounded-2xl border border-border bg-card p-8 sm:p-10"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-accent">
               {story.category}

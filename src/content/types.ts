@@ -5,6 +5,8 @@ export interface BriefLink {
 }
 
 export interface BriefStory {
+  /** Section anchor on the edition page (/brief/<edition-slug>#<slug>) — short, kebab-case, usually the subject, e.g. "walmart", "criteo" */
+  slug: string;
   category: string;
   headline: string;
   body: string[];
