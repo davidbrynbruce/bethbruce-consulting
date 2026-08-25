@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
-import { createClient } from "@supabase/supabase-js";
 import type { Session } from "@supabase/supabase-js";
-import { SUPABASE_KEY, SUPABASE_URL } from "@/lib/supabaseConfig";
+import CustomersPanel from "@/components/CustomersPanel";
+import { supabase } from "@/lib/supabaseClient";
 import { defaultContent, mergeContent } from "@/content/siteContent";
 import type { SiteContent } from "@/content/siteContent";
-
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const inputClasses =
   "w-full rounded-lg border border-border bg-card px-4 py-3 text-foreground focus:border-accent focus:outline-none";
@@ -405,6 +403,7 @@ function Editor({ session }: { session: Session }) {
 function AdminPage() {
   const [session, setSession] = useState<Session | null>(null);
   const [ready, setReady] = useState(false);
+  const [tab, setTab] = useState<"content" | "customers">("content");
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
@@ -424,7 +423,42 @@ function AdminPage() {
       </main>
     );
   }
-  return session ? <Editor session={session} /> : <AuthForm />;
+  if (!session) return <AuthForm />;
+  return (
+    <div>
+      <div className="mx-auto max-w-content px-6 pt-10">
+        <div className="flex gap-2 border-b border-border">
+          <button
+            onClick={() => setTab("content")}
+            className={`rounded-t-lg px-5 py-3 text-sm font-semibold ${
+              tab === "content"
+                ? "border border-b-0 border-border bg-card text-foreground"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Site content
+          </button>
+          <button
+            onClick={() => setTab("customers")}
+            className={`rounded-t-lg px-5 py-3 text-sm font-semibold ${
+              tab === "customers"
+                ? "border border-b-0 border-border bg-card text-foreground"
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            Customers
+          </button>
+        </div>
+      </div>
+      {tab === "content" ? (
+        <Editor session={session} />
+      ) : (
+        <main className="mx-auto max-w-content px-6 pb-24 pt-10">
+          <CustomersPanel />
+        </main>
+      )}
+    </div>
+  );
 }
 
 export default AdminPage;

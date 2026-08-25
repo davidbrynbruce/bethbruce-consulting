@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
+import { SUPABASE_KEY, SUPABASE_URL } from "@/lib/supabaseConfig";
 
 const ENDPOINT = "https://formsubmit.co/ajax/bethmbruce@gmail.com";
 
@@ -22,23 +23,47 @@ function ContactForm() {
     const form = event.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
     setStatus("submitting");
-    try {
-      const res = await fetch(ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          ...data,
-          _subject: `New lead — ${String(data.name || "bethbruce.com")}`,
-          _template: "table",
-        }),
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    // Two best-effort deliveries: the email notification and the CRM row.
+    const emailSend = fetch(ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        ...data,
+        _subject: `New lead — ${String(data.name || "bethbruce.com")}`,
+        _template: "table",
+      }),
+    });
+    const crmInsert = fetch(`${SUPABASE_URL}/rest/v1/customers`, {
+      method: "POST",
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        "Content-Type": "application/json",
+        Prefer: "return=minimal",
+      },
+      body: JSON.stringify({
+        name: String(data.name || ""),
+        email: String(data.email || ""),
+        company: String(data.company || ""),
+        status: "lead",
+        source: "contact-form",
+        notes: `${String(data.interest || "")}\n\n${String(data.message || "")}`.trim(),
+      }),
+    });
+    const [emailResult, crmResult] = await Promise.allSettled([
+      emailSend,
+      crmInsert,
+    ]);
+    const delivered =
+      (emailResult.status === "fulfilled" && emailResult.value.ok) ||
+      (crmResult.status === "fulfilled" && crmResult.value.ok);
+    if (delivered) {
       form.reset();
       setStatus("success");
-    } catch {
+    } else {
       setStatus("error");
     }
   }

@@ -95,6 +95,14 @@ emails save; add an editor by adding their email to the
 `site_content`/`storage.objects` policies. Brief editions are not
 edited here — they stay code-managed by the weekly automation.
 
+The admin also has a **Customers** tab — a lightweight CRM backed by the
+`customers` table: contact-form submissions land there automatically as
+leads (the form dual-writes to FormSubmit email and the table), editors
+can add/edit/delete contacts with a status (lead/prospect/client/past)
+and notes, and the newsletter subscriber list is shown read-only.
+Row-level security: the public key may only insert contact-form leads;
+reading and managing require an allow-listed editor sign-in.
+
 ## Connecting Lovable (one-time, done by a human)
 
 Connect GitHub in Lovable (Settings → Connectors), point the project at this
