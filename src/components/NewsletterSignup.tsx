@@ -1,10 +1,7 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 
-const SUPABASE_URL = "https://yoabjhmutrwuipmouitu.supabase.co";
-// Publishable key — safe to ship in the client; row-level security only
-// allows inserts, so the subscriber list is never readable from the site.
-const SUPABASE_KEY = "sb_publishable_DswuTjkKmV4DMqPCwjXfyw_e8I7Gpjw";
+import { SUPABASE_KEY, SUPABASE_URL } from "@/lib/supabaseConfig";
 
 type Status = "idle" | "submitting" | "success" | "exists" | "error";
 

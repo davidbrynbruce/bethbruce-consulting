@@ -81,6 +81,20 @@ To:, same unsubscribe footer), and sets `welcomed_at`. The Monday send
 then covers everyone weekly. Instant-on-signup requires an email API key
 (e.g. Resend) wired to a Supabase edge function — the planned upgrade.
 
+## Site editor (basic CMS)
+
+`/admin` is a lightweight content editor: sign in (email + password;
+first visit uses "Create an account" with a one-time email confirmation)
+and edit the homepage's hero, Brief intro, advisory offerings, about
+bio/credentials, contact copy, and upload a headshot. Content lives in
+Supabase (`site_content` row `site`; images in the public `site-assets`
+bucket) and the site reads it at load time with the code's copy as
+fallback — publishing an edit needs no rebuild. Anyone can create an
+account, but row-level security only lets the allow-listed editor
+emails save; add an editor by adding their email to the
+`site_content`/`storage.objects` policies. Brief editions are not
+edited here — they stay code-managed by the weekly automation.
+
 ## Connecting Lovable (one-time, done by a human)
 
 Connect GitHub in Lovable (Settings → Connectors), point the project at this

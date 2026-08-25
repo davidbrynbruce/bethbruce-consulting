@@ -2,60 +2,22 @@ import { Link } from "react-router-dom";
 import ContactForm from "@/components/ContactForm";
 import NewsletterSignup from "@/components/NewsletterSignup";
 import { latestEdition } from "@/content/briefs";
-
-const advisoryOfferings = [
-  {
-    title: "Strategy projects",
-    description:
-      "Focused engagements that answer a hard question: where to play, how to win, and what to build next.",
-  },
-  {
-    title: "Market & positioning",
-    description:
-      "How the market sees you, how it should, and the narrative and packaging to close the gap.",
-  },
-  {
-    title: "Executive advisory",
-    description:
-      "Ongoing counsel for leadership teams navigating commerce media's fastest-moving decisions.",
-  },
-  {
-    title: "Speaking & keynotes",
-    description:
-      "Keynotes and conference sessions on where commerce media is heading and what it means for the industry.",
-  },
-  {
-    title: "Executive workshops",
-    description:
-      "Working sessions that align leadership teams around strategy, story, and go-to-market.",
-  },
-];
-
-const credentials = [
-  "20+ years in marketing and corporate communications",
-  "Most recently Senior Director of Corporate Communications at Walmart",
-  "Led communications for Walmart's growth businesses, including its retail media network, Walmart Connect",
-  "Builder of high-performing teams and executive-level narratives",
-];
+import { useSiteContent } from "@/content/siteContent";
 
 function Home() {
   const latest = latestEdition;
+  const content = useSiteContent();
   return (
     <main>
       <section className="mx-auto max-w-content px-6 pb-20 pt-24 sm:pt-32">
         <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-accent">
-          Independent Commerce Media Analyst &amp; Advisor
+          {content.hero.kicker}
         </p>
         <h1 className="max-w-3xl font-display text-4xl font-medium leading-tight sm:text-6xl">
-          Clear thinking on commerce media — and clear-eyed advice for the
-          companies building it.
+          {content.hero.headline}
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          I spent two decades inside one of the world's largest retailers, most
-          recently leading communications for Walmart's growth businesses,
-          including its retail media network. Now I analyze the commerce media
-          landscape independently — and advise the networks, brands, agencies,
-          and technology companies shaping it.
+          {content.hero.sub}
         </p>
         <div className="mt-10 flex flex-wrap gap-4">
           <Link
@@ -79,9 +41,7 @@ function Home() {
             The Commerce Media Brief
           </h2>
           <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-            What actually matters in retail media this week. A weekly external
-            review of the commerce media landscape — delivered to your inbox
-            when each edition publishes.
+            {content.brief.intro}
           </p>
           <div className="mt-6">
             <NewsletterSignup />
@@ -155,12 +115,10 @@ function Home() {
           Advisory
         </h2>
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-          Commercial engagements run through Commerce Growth Advisory — working
-          with retail media networks, CPGs, agencies, and commerce technology
-          companies.
+          {content.advisory.intro}
         </p>
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {advisoryOfferings.map((offering) => (
+          {content.advisory.offerings.map((offering) => (
             <div
               key={offering.title}
               className="rounded-2xl border border-border bg-card p-8"
@@ -194,11 +152,14 @@ function Home() {
                   BB
                 </span>
                 <img
-                  src="/beth-bruce.jpg"
+                  src={content.about.imageUrl || "/beth-bruce.jpg"}
                   alt="Beth Bruce"
                   className="absolute inset-0 h-full w-full object-cover"
                   onError={(e) => {
                     e.currentTarget.style.display = "none";
+                  }}
+                  onLoad={(e) => {
+                    e.currentTarget.style.display = "";
                   }}
                 />
               </a>
@@ -206,11 +167,7 @@ function Home() {
                 About Beth
               </h2>
               <p className="mt-6 text-lg text-muted-foreground">
-                Beth Bruce is an independent commerce media analyst and advisor
-                who has spent her career at the intersection of retail, media,
-                and growth. She writes The Commerce Media Brief and advises the
-                companies building the commerce media ecosystem on strategy,
-                positioning, and communications.
+                {content.about.bio}
               </p>
               <a
                 href="https://www.linkedin.com/in/bethmbruce"
@@ -222,7 +179,7 @@ function Home() {
               </a>
             </div>
             <ul className="space-y-4">
-              {credentials.map((item) => (
+              {content.about.credentials.map((item) => (
                 <li key={item} className="flex gap-3">
                   <span
                     aria-hidden
@@ -241,12 +198,10 @@ function Home() {
           <div className="grid items-start gap-12 md:grid-cols-2">
             <div>
               <h2 className="font-display text-3xl font-medium sm:text-4xl">
-                Let's talk.
+                {content.contact.heading}
               </h2>
               <p className="mt-4 max-w-xl text-primary-foreground/80">
-                Building or scaling in commerce media? Reach out for an
-                introductory conversation about advisory, speaking, or
-                workshops — or just say hello.
+                {content.contact.blurb}
               </p>
               <a
                 href="https://www.linkedin.com/in/bethmbruce"
