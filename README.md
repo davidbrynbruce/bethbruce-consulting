@@ -12,7 +12,8 @@ Vite + React 18 + TypeScript + Tailwind CSS, with react-router.
 - [x] Brand direction locked: Beth Bruce (analyst brand) + Commerce Growth Advisory (commercial engine) + The Commerce Media Brief (content engine)
 - [x] The Commerce Media Brief: archive at `/brief`, per-week sub-pages at `/brief/<date>`, first edition published
 - [ ] Weekly Brief automation armed (Claude Routine — pending approval)
-- [ ] Content brief open items resolved (email, domain, bio approval — brief lives in the private planning repo, not here)
+- [x] Contact form live — leads go to Beth via FormSubmit (first submission triggers a one-time activation email she must confirm)
+- [ ] Content brief open items resolved (domain, bio approval, headshot — brief lives in the private planning repo, not here)
 - [ ] Lovable GitHub sync connected
 - [ ] Real copy, domain, and deploy
 

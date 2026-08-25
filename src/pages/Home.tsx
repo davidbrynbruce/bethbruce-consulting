@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import ContactForm from "@/components/ContactForm";
 import { latestEdition } from "@/content/briefs";
 
 const advisoryOfferings = [
@@ -233,28 +234,26 @@ function Home() {
 
       <section id="contact" className="border-t border-border bg-primary">
         <div className="mx-auto max-w-content px-6 py-20 text-primary-foreground">
-          <h2 className="font-display text-3xl font-medium sm:text-4xl">
-            Let's talk.
-          </h2>
-          <p className="mt-4 max-w-xl text-primary-foreground/80">
-            Building or scaling in commerce media? Reach out for an introductory
-            conversation about advisory, speaking, or workshops.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <a
-              href="mailto:hello@example.com"
-              className="inline-block rounded-full bg-accent px-6 py-3 font-medium text-accent-foreground hover:opacity-90"
-            >
-              hello@example.com
-            </a>
-            <a
-              href="https://www.linkedin.com/in/bethmbruce"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-block rounded-full border border-primary-foreground/30 px-6 py-3 font-medium hover:bg-primary-foreground/10"
-            >
-              Connect on LinkedIn
-            </a>
+          <div className="grid items-start gap-12 md:grid-cols-2">
+            <div>
+              <h2 className="font-display text-3xl font-medium sm:text-4xl">
+                Let's talk.
+              </h2>
+              <p className="mt-4 max-w-xl text-primary-foreground/80">
+                Building or scaling in commerce media? Reach out for an
+                introductory conversation about advisory, speaking, or
+                workshops — or just say hello.
+              </p>
+              <a
+                href="https://www.linkedin.com/in/bethmbruce"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-8 inline-block rounded-full border border-primary-foreground/30 px-6 py-3 font-medium hover:bg-primary-foreground/10"
+              >
+                Connect on LinkedIn
+              </a>
+            </div>
+            <ContactForm />
           </div>
         </div>
       </section>
