@@ -175,7 +175,29 @@ function Home() {
         <div className="mx-auto max-w-content px-6 py-20">
           <div className="grid items-start gap-12 md:grid-cols-2">
             <div>
-              <h2 className="font-display text-3xl font-medium sm:text-4xl">
+              <a
+                href="https://www.linkedin.com/in/bethmbruce"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Beth Bruce on LinkedIn"
+                className="relative block h-28 w-28 overflow-hidden rounded-full border-2 border-accent bg-primary transition-opacity hover:opacity-90"
+              >
+                <span
+                  aria-hidden
+                  className="absolute inset-0 flex items-center justify-center font-display text-3xl font-semibold text-accent"
+                >
+                  BB
+                </span>
+                <img
+                  src="/beth-bruce.jpg"
+                  alt="Beth Bruce"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+              </a>
+              <h2 className="mt-6 font-display text-3xl font-medium sm:text-4xl">
                 About Beth
               </h2>
               <p className="mt-6 text-lg text-muted-foreground">
@@ -185,6 +207,14 @@ function Home() {
                 companies building the commerce media ecosystem on strategy,
                 positioning, and communications.
               </p>
+              <a
+                href="https://www.linkedin.com/in/bethmbruce"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-6 inline-block rounded-full border border-border bg-card px-6 py-3 font-medium hover:bg-muted"
+              >
+                View LinkedIn profile →
+              </a>
             </div>
             <ul className="space-y-4">
               {credentials.map((item) => (
