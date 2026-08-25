@@ -57,6 +57,20 @@ Every Monday morning, a Claude run should:
    reporting only.
 4. Verify with `bun install && bun run build`.
 5. Commit and push to `main`.
+6. **Send the newsletter**: fetch active subscribers from the Supabase
+   project `bethbruce-site` (`select email from brief_subscribers where
+   unsubscribed_at is null`), process any "unsubscribe" replies in Gmail
+   first (set `unsubscribed_at` for those emails), then send ONE Gmail
+   message — To: davidbrynbruce@gmail.com, BCC: all subscribers — with
+   subject "The Commerce Media Brief — <edition title>" and an HTML body
+   rendering the edition (title, dek, stories with reads and coverage
+   links, quick hits, link to the web edition) plus a footer:
+   "You're receiving this because you subscribed at the site. Reply
+   'unsubscribe' to stop." If Gmail or Supabase tools are unavailable in
+   the automated run, skip the send and flag it for an interactive session.
+
+Signups are stored in Supabase (`brief_subscribers`, insert-only for the
+site's publishable key; the list is readable only with admin access).
 
 ## Connecting Lovable (one-time, done by a human)
 

@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router-dom";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import { editions } from "@/content/briefs";
 
 function BriefEditionPage() {
@@ -126,6 +127,18 @@ function BriefEditionPage() {
           </ul>
         </section>
       )}
+
+      <section className="mt-14 rounded-2xl border border-border bg-muted/50 p-8 sm:p-10">
+        <h2 className="font-display text-2xl font-semibold sm:text-3xl">
+          Get next week's Brief in your inbox
+        </h2>
+        <p className="mt-3 max-w-xl text-muted-foreground">
+          One email a week, when the edition publishes. No noise in between.
+        </p>
+        <div className="mt-6">
+          <NewsletterSignup />
+        </div>
+      </section>
 
       <p className="mt-14 max-w-2xl text-sm text-muted-foreground">
         The Commerce Media Brief is compiled weekly from public reporting;

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import { editions } from "@/content/briefs";
 
 function BriefIndex() {
@@ -15,13 +16,16 @@ function BriefIndex() {
         the money, and the read on what they mean. Every item links to the
         original reporting.
       </p>
+      <div className="mt-8">
+        <NewsletterSignup />
+      </div>
       <a
         href="https://www.linkedin.com/in/bethmbruce"
         target="_blank"
         rel="noreferrer"
-        className="mt-8 inline-block rounded-full border border-border px-6 py-3 font-medium hover:bg-muted"
+        className="mt-4 inline-block text-sm font-medium text-muted-foreground hover:text-foreground"
       >
-        Follow along on LinkedIn
+        Or follow along on LinkedIn →
       </a>
 
       <div className="mt-14 space-y-6">

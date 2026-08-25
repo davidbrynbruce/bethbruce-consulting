@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import ContactForm from "@/components/ContactForm";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import { latestEdition } from "@/content/briefs";
 
 const advisoryOfferings = [
@@ -79,9 +80,12 @@ function Home() {
           </h2>
           <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
             What actually matters in retail media this week. A weekly external
-            review of the commerce media landscape, plus independent analysis
-            and commentary on LinkedIn.
+            review of the commerce media landscape — delivered to your inbox
+            when each edition publishes.
           </p>
+          <div className="mt-6">
+            <NewsletterSignup />
+          </div>
 
           {latest && (
             <Link
