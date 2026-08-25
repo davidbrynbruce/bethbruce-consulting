@@ -25,6 +25,8 @@ export interface BriefEdition {
   weekOf: string;
   title: string;
   dek: string;
+  /** Optional small-print note, e.g. marking retrospectively compiled editions */
+  editorsNote?: string;
   stories: BriefStory[];
   quickHits: QuickHit[];
 }

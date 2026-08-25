@@ -42,6 +42,11 @@ function BriefEditionPage() {
       <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
         {edition.dek}
       </p>
+      {edition.editorsNote && (
+        <p className="mt-3 text-sm italic text-muted-foreground">
+          {edition.editorsNote}
+        </p>
+      )}
 
       <nav className="mt-8 flex flex-wrap gap-2">
         {edition.stories.map((story) => (
