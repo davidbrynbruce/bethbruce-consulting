@@ -46,7 +46,7 @@ function NewsletterSignup() {
       <p className="max-w-md rounded-2xl border border-border bg-card px-5 py-4 font-medium">
         {status === "exists"
           ? "You're already on the list — the next Brief is on its way."
-          : "You're in. Each new Brief lands in your inbox when it publishes."}
+          : "You're in. The latest Brief is on its way to your inbox, and each new edition follows weekly."}
       </p>
     );
   }

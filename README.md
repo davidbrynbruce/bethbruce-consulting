@@ -72,6 +72,15 @@ Every Monday morning, a Claude run should:
 Signups are stored in Supabase (`brief_subscribers`, insert-only for the
 site's publishable key; the list is readable only with admin access).
 
+### Welcome send (hourly)
+
+New subscribers get the latest edition immediately-ish: an hourly Claude
+run checks `brief_subscribers` for rows where `welcomed_at is null and
+unsubscribed_at is null`, emails each one the latest edition (personal
+To:, same unsubscribe footer), and sets `welcomed_at`. The Monday send
+then covers everyone weekly. Instant-on-signup requires an email API key
+(e.g. Resend) wired to a Supabase edge function — the planned upgrade.
+
 ## Connecting Lovable (one-time, done by a human)
 
 Connect GitHub in Lovable (Settings → Connectors), point the project at this
