@@ -1,3 +1,12 @@
+# ⚠️ Moved
+
+This repo is retired. The site now lives in
+**[davidbrynbruce/commerce-growth-advisory](https://github.com/davidbrynbruce/commerce-growth-advisory)**
+(created by Lovable's Git sync on 2026-08-26), which carries Beth's
+redesign plus all features from here. Do not push new work to this repo.
+
+---
+
 # Beth Bruce — Independent Commerce Media Analyst & Advisor
 
 Site for Beth Bruce's two-engine brand: The Commerce Media Brief (weekly
