@@ -373,6 +373,172 @@ function Editor({ session }: { session: Session }) {
           </label>
         </section>
 
+        <section className="rounded-2xl border border-border bg-card p-8">
+          <h2 className="font-display text-xl font-semibold">
+            Resume page (/resume)
+          </h2>
+          <div className="mt-4 space-y-4">
+            <label className={labelClasses}>
+              Headline
+              <input
+                className={`mt-1 ${inputClasses}`}
+                value={content.resume.headline}
+                onChange={(e) =>
+                  patch((d) => ((d.resume.headline = e.target.value), d))
+                }
+              />
+            </label>
+            <label className={labelClasses}>
+              Location
+              <input
+                className={`mt-1 ${inputClasses}`}
+                value={content.resume.location}
+                onChange={(e) =>
+                  patch((d) => ((d.resume.location = e.target.value), d))
+                }
+              />
+            </label>
+            <label className={labelClasses}>
+              Summary
+              <textarea
+                rows={4}
+                className={`mt-1 ${inputClasses}`}
+                value={content.resume.summary}
+                onChange={(e) =>
+                  patch((d) => ((d.resume.summary = e.target.value), d))
+                }
+              />
+            </label>
+            <div className="space-y-5">
+              {content.resume.roles.map((role, i) => (
+                <div key={i} className="rounded-xl border border-border p-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-semibold">Role {i + 1}</span>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        patch(
+                          (d) => (d.resume.roles.splice(i, 1), d),
+                        )
+                      }
+                      className="text-sm font-medium text-muted-foreground hover:underline"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                  <div className="mt-3 grid gap-3 sm:grid-cols-3">
+                    <label className={labelClasses}>
+                      Title
+                      <input
+                        className={`mt-1 ${inputClasses}`}
+                        value={role.title}
+                        onChange={(e) =>
+                          patch(
+                            (d) => (
+                              (d.resume.roles[i].title = e.target.value), d
+                            ),
+                          )
+                        }
+                      />
+                    </label>
+                    <label className={labelClasses}>
+                      Organization
+                      <input
+                        className={`mt-1 ${inputClasses}`}
+                        value={role.org}
+                        onChange={(e) =>
+                          patch(
+                            (d) => ((d.resume.roles[i].org = e.target.value), d),
+                          )
+                        }
+                      />
+                    </label>
+                    <label className={labelClasses}>
+                      Period
+                      <input
+                        className={`mt-1 ${inputClasses}`}
+                        value={role.period}
+                        onChange={(e) =>
+                          patch(
+                            (d) => (
+                              (d.resume.roles[i].period = e.target.value), d
+                            ),
+                          )
+                        }
+                      />
+                    </label>
+                  </div>
+                  <label className={`mt-3 ${labelClasses}`}>
+                    Bullets (one per line)
+                    <textarea
+                      rows={3}
+                      className={`mt-1 ${inputClasses}`}
+                      value={role.bullets.join("\n")}
+                      onChange={(e) =>
+                        patch(
+                          (d) => (
+                            (d.resume.roles[i].bullets = e.target.value
+                              .split("\n")
+                              .filter((line) => line.trim() !== "")),
+                            d
+                          ),
+                        )
+                      }
+                    />
+                  </label>
+                </div>
+              ))}
+              <button
+                type="button"
+                onClick={() =>
+                  patch(
+                    (d) => (
+                      d.resume.roles.push({
+                        title: "",
+                        org: "",
+                        period: "",
+                        bullets: [],
+                      }),
+                      d
+                    ),
+                  )
+                }
+                className="rounded-full border border-border px-5 py-2 text-sm font-medium hover:bg-muted"
+              >
+                + Add role
+              </button>
+            </div>
+            <label className={labelClasses}>
+              Expertise (one per line)
+              <textarea
+                rows={5}
+                className={`mt-1 ${inputClasses}`}
+                value={content.resume.expertise.join("\n")}
+                onChange={(e) =>
+                  patch(
+                    (d) => (
+                      (d.resume.expertise = e.target.value
+                        .split("\n")
+                        .filter((line) => line.trim() !== "")),
+                      d
+                    ),
+                  )
+                }
+              />
+            </label>
+            <label className={labelClasses}>
+              Education
+              <input
+                className={`mt-1 ${inputClasses}`}
+                value={content.resume.education}
+                onChange={(e) =>
+                  patch((d) => ((d.resume.education = e.target.value), d))
+                }
+              />
+            </label>
+          </div>
+        </section>
+
         <section className="rounded-2xl border border-border bg-muted/50 p-8">
           <h2 className="font-display text-xl font-semibold">
             Change password

@@ -103,6 +103,17 @@ and notes, and the newsletter subscriber list is shown read-only.
 Row-level security: the public key may only insert contact-form leads;
 reading and managing require an allow-listed editor sign-in.
 
+## Domains (planned wiring)
+
+- **commercegrowthadvisory.com** — primary site domain (connect in
+  Lovable's domain settings) and email: beth@commercegrowthadvisory.com
+  via Cloudflare Email Routing → Gmail.
+- **bethmbruce.com** — 301 redirect to
+  commercegrowthadvisory.com/resume (the resume page; content editable
+  in /admin's Resume section).
+- **commercemediabrief.com** — 301 redirect to
+  commercegrowthadvisory.com/brief.
+
 ## Connecting Lovable (one-time, done by a human)
 
 Connect GitHub in Lovable (Settings → Connectors), point the project at this

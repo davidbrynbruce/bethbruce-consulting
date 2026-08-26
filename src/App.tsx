@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import Home from "@/pages/Home";
 import BriefIndex from "@/pages/BriefIndex";
 import BriefEditionPage from "@/pages/BriefEdition";
+import ResumePage from "@/pages/Resume";
 
 const AdminPage = lazy(() => import("@/pages/Admin"));
 
@@ -15,6 +16,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="brief" element={<BriefIndex />} />
           <Route path="brief/:slug" element={<BriefEditionPage />} />
+          <Route path="resume" element={<ResumePage />} />
           <Route
             path="admin"
             element={

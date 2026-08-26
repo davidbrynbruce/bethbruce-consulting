@@ -6,12 +6,27 @@ export interface Offering {
   description: string;
 }
 
+export interface ResumeRole {
+  title: string;
+  org: string;
+  period: string;
+  bullets: string[];
+}
+
 export interface SiteContent {
   hero: { kicker: string; headline: string; sub: string };
   brief: { intro: string };
   advisory: { intro: string; offerings: Offering[] };
   about: { bio: string; credentials: string[]; imageUrl: string };
   contact: { heading: string; blurb: string };
+  resume: {
+    headline: string;
+    location: string;
+    summary: string;
+    roles: ResumeRole[];
+    expertise: string[];
+    education: string;
+  };
 }
 
 export const defaultContent: SiteContent = {
@@ -71,6 +86,50 @@ export const defaultContent: SiteContent = {
     blurb:
       "Building or scaling in commerce media? Reach out for an introductory conversation about advisory, speaking, or workshops — or just say hello.",
   },
+  resume: {
+    headline: "Independent Commerce Media Analyst & Advisor",
+    location: "San Francisco Bay Area",
+    summary:
+      "Senior communications executive with more than 20 years of experience building enterprise narratives for some of the world's largest retail and commerce businesses. Expertise spans corporate reputation, executive positioning, national business and trade media relations, crisis and issues management, investor communications, and AI-enabled communications programs.",
+    roles: [
+      {
+        title: "Independent Commerce Media Analyst & Advisor",
+        org: "Commerce Growth Advisory · The Commerce Media Brief",
+        period: "2026 – Present",
+        bullets: [
+          "Writes The Commerce Media Brief, a weekly independent review of the retail media landscape.",
+          "Advises retail media networks, CPGs, agencies, and commerce technology companies on strategy, positioning, and communications.",
+        ],
+      },
+      {
+        title: "Senior Director, Global Communications — Enterprise Growth",
+        org: "Walmart",
+        period: "[Add dates]",
+        bullets: [
+          "Led communications for Walmart's Enterprise Growth portfolio — the businesses powering Walmart's next chapter, including its retail media arm Walmart Connect, membership, and data ventures.",
+          "Built and led communications for Walmart Connect through its emergence as one of the industry's largest retail media networks.",
+        ],
+      },
+      {
+        title: "Communications Leadership",
+        org: "eBay Advertising",
+        period: "[Add dates]",
+        bullets: [
+          "Led communications for eBay's advertising business.",
+        ],
+      },
+    ],
+    expertise: [
+      "Retail media & commerce advertising",
+      "Corporate reputation",
+      "Executive communications & C-suite positioning",
+      "National business & trade media relations",
+      "Crisis & issues management",
+      "Investor communications",
+      "AI-enabled communications programs",
+    ],
+    education: "[Add education]",
+  },
 };
 
 function mergeSection<T extends object>(base: T, saved: unknown): T {
@@ -101,6 +160,7 @@ export function mergeContent(saved: unknown): SiteContent {
     advisory: mergeSection(defaultContent.advisory, record.advisory),
     about: mergeSection(defaultContent.about, record.about),
     contact: mergeSection(defaultContent.contact, record.contact),
+    resume: mergeSection(defaultContent.resume, record.resume),
   };
 }
 
